@@ -3,20 +3,16 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.13'
 
-# Use sqlite3 as the database for Active Record
+# Use postgres as the database for Active Record
 gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
 
+gem 'react-rails'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
-
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -44,9 +40,15 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem "rspec-rails", ">= 2.0.1", group: [:development, :test]
-gem "capybara", group: [:development, :test]
-gem "cucumber-rails", group: [:development, :test]
+group :test do
+  gem "selenium-webdriver"
+  gem "capybara"
+  gem "factory_girl"
+  gem "rspec-rails", ">= 2.0.1"
+  gem "database_cleaner"
+end
+
+gem "pry", group: [:test, :development]
+
 gem "devise"
-gem "omniauth", "~> 0.2.0"
-gem "haml", ">= 3.0.0"
+gem "omniauth"
