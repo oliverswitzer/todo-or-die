@@ -51,4 +51,3 @@ end
 gem "pry", group: [:test, :development]
 
 gem "devise"
-gem "omniauth"
