@@ -6,13 +6,45 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rspec'
+require 'capybara/poltergeist'
+require 'devise'
+require 'capybara-screenshot/rspec'
 
 ActiveRecord::Migration.check_pending!
 
-Capybara.default_driver = :selenium
-Capybara.javascript_driver = :webkit
+# Capybara.default_driver = :selenium
+Capybara.javascript_driver = :poltergeist
 
 RSpec.configure do |config|
+  config.include Devise::TestHelpers, type: :controller
   config.include Capybara::DSL
   config.infer_spec_type_from_file_location!
+
+  config.before(:suite) do
+    DatabaseCleaner.orm = "active_record"
+    DatabaseCleaner.clean_with :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, :js => true) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each, :database) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each, :database) do
+    DatabaseCleaner.clean
+  end
+
+  config.include FactoryGirl::Syntax::Methods
+
+  config.before(:suite) do
+    FactoryGirl.find_definitions
+  end
+
 end

@@ -28,26 +28,24 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
 group :test do
-  gem "selenium-webdriver"
+  gem "selenium-webdriver", "2.47.0"
+  gem "capybara-webkit"
   gem "capybara"
   gem "factory_girl"
   gem "rspec-rails", ">= 2.0.1"
   gem "database_cleaner"
+  gem 'poltergeist'
+  gem 'capybara-screenshot', :group => :test
 end
 
-gem "pry", group: [:test, :development]
+group :test, :development do
+  gem "dotenv-rails"
+  gem "pry"
+  gem "pry-rails"
+end
+
 
 gem "devise"
+gem 'omniauth-facebook'
+
