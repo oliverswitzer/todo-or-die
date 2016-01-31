@@ -1,0 +1,4 @@
+<h1>Welcome</h1>
+
+<%= current_user.try(:name) %>
+<%= link_to "Sign up with Facebook", user_omniauth_authorize_path(:facebook) %>
