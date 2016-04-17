@@ -18,6 +18,7 @@ Capybara.javascript_driver = :poltergeist
 Capybara::Screenshot.register_filename_prefix_formatter(:rspec) do |example|
   "screenshot_#{example.description.gsub(' ', '-').gsub(/^.*\/spec\//,'')}"
 end
+Capybara::Screenshot.append_timestamp = false
 
 RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
