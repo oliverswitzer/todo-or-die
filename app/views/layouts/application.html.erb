@@ -12,6 +12,9 @@
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
+<%= current_user.try(:name) %>
+
+
 <%= yield %>
 
 </body>

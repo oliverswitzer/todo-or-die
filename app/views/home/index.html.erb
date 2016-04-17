@@ -1,4 +1,3 @@
-<h1>Welcome</h1>
+<h2><%= t('home.welcome') %></h2>
 
-<%= current_user.try(:name) %>
-<%= link_to "Sign up with Facebook", user_omniauth_authorize_path(:facebook) %>
+<%= link_to t('home.cta'), user_omniauth_authorize_path(:facebook), class: 'button' %>
