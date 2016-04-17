@@ -15,14 +15,19 @@ ActiveRecord::Migration.check_pending!
 # Capybara.default_driver = :selenium
 Capybara.javascript_driver = :poltergeist
 
+Capybara::Screenshot.register_filename_prefix_formatter(:rspec) do |example|
+  "screenshot_#{example.description.gsub(' ', '-').gsub(/^.*\/spec\//,'')}"
+end
+
 RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
   config.include Capybara::DSL
   config.infer_spec_type_from_file_location!
 
   config.before(:suite) do
-    DatabaseCleaner.orm = "active_record"
+    DatabaseCleaner.orm = 'active_record'
     DatabaseCleaner.clean_with :truncation
+    FileUtils.rm(Dir.glob("#{Rails.root}/tmp/capybara/*"))
   end
 
   config.before(:each) do
