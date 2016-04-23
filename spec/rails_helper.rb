@@ -12,8 +12,12 @@ require 'capybara-screenshot/rspec'
 
 ActiveRecord::Migration.check_pending!
 
-# Capybara.default_driver = :selenium
 Capybara.javascript_driver = :poltergeist
+
+Capybara::Screenshot.register_filename_prefix_formatter(:rspec) do |example|
+  "screenshot_#{example.description.gsub(' ', '-').gsub(/^.*\/spec\//,'')}"
+end
+Capybara::Screenshot.append_timestamp = false
 
 RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
@@ -21,8 +25,9 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.before(:suite) do
-    DatabaseCleaner.orm = "active_record"
+    DatabaseCleaner.orm = 'active_record'
     DatabaseCleaner.clean_with :truncation
+    FileUtils.rm(Dir.glob("#{Rails.root}/tmp/capybara/*"))
   end
 
   config.before(:each) do
@@ -46,5 +51,7 @@ RSpec.configure do |config|
   config.before(:suite) do
     FactoryGirl.find_definitions
   end
+
+  # config.after(:each) { Warden.test_reset! }
 
 end

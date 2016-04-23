@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160113011353) do
+ActiveRecord::Schema.define(version: 20160417152633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "goals", force: true do |t|
+    t.string   "name"
+    t.datetime "complete_by"
+    t.integer  "word_count"
+  end
+
+  add_index "goals", ["name"], name: "index_goals_on_name", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

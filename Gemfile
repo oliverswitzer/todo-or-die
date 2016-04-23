@@ -1,51 +1,28 @@
 source 'https://rubygems.org'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.13'
-
-# Use postgres as the database for Active Record
 gem 'pg'
-
-# Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
-
 gem 'react-rails'
-
-# Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
-
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
-end
+gem 'bootstrap-sass'
+gem 'devise'
+gem 'omniauth-facebook'
 
 group :test do
-  gem "selenium-webdriver", "2.47.0"
-  gem "capybara-webkit"
-  gem "capybara"
-  gem "factory_girl"
-  gem "rspec-rails", ">= 2.0.1"
-  gem "database_cleaner"
+  gem 'capybara'
   gem 'poltergeist'
+  gem 'factory_girl'
+  gem 'rspec-rails', '>= 2.0.1'
+  gem 'database_cleaner'
   gem 'capybara-screenshot', :group => :test
 end
 
 group :test, :development do
-  gem "dotenv-rails"
-  gem "pry"
-  gem "pry-rails"
+  gem 'dotenv-rails'
+  gem 'pry'
+  gem 'pry-rails'
 end
 
-
-gem "devise"
-gem 'omniauth-facebook'
 
