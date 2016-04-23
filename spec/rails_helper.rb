@@ -12,7 +12,6 @@ require 'capybara-screenshot/rspec'
 
 ActiveRecord::Migration.check_pending!
 
-# Capybara.default_driver = :selenium
 Capybara.javascript_driver = :poltergeist
 
 Capybara::Screenshot.register_filename_prefix_formatter(:rspec) do |example|
@@ -52,5 +51,7 @@ RSpec.configure do |config|
   config.before(:suite) do
     FactoryGirl.find_definitions
   end
+
+  # config.after(:each) { Warden.test_reset! }
 
 end

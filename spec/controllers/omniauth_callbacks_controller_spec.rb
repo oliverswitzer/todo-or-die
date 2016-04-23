@@ -1,8 +1,8 @@
 require "rails_helper"
-require "helpers/omniauth_helper"
+require "helpers/authentication_helper"
 
-describe OmniauthCallbacksController do
-  include OmniAuthHelper
+describe OmniauthCallbacksController, type: :controller do
+  include AuthenticationHelper
 
   describe "POST facebook" do
     let(:create_facebook_user_servie) { spy(CreateFacebookUserService) }

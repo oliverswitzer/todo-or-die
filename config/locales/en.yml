@@ -21,3 +21,8 @@
 
 en:
   hello: "Hello world"
+  home:
+    welcome: "So you want to get that novel finished?"
+    cta: "Create Your Goal"
+  goals:
+    header: "Set a goal for yourself"

@@ -1,0 +1,17 @@
+<h1><%= t('goals.header') %></h1>
+
+<%= form_for @goal do |f| %>
+    <%= f.label :name, 'Name your goal'  %>
+    <%= f.text_field :name %>
+
+    <%= f.label :project_type, 'What are you working on?' %>
+    <%= f.select :project_type, [['Novel', 1]], include_blank: true %>
+
+    <%= f.label :word_count, 'How many words do you want to write?' %>
+    <%= f.text_field :word_count %>
+
+    <%= f.label :complete_by, 'When I want to be done' %>
+    <%= f.date_select :complete_by %>
+
+    <%= f.submit(value: 'Commit Me') %>
+<% end  %>
