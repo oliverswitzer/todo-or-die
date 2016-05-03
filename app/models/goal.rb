@@ -1,3 +1,3 @@
 class Goal < ActiveRecord::Base
-  attr_accessor :project_type
+  as_enum :goal_type, [:novel, :coding_project, :blog], map: :string
 end

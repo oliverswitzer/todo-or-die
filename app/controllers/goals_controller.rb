@@ -11,6 +11,6 @@ class GoalsController < ApplicationController
   end
 
   def sanitized_params
-    params.require(:goal).permit(:name, :word_count, :complete_by, :project_type)
+    params.require(:goal).permit(:name, :word_count, :complete_by, :goal_type)
   end
 end
