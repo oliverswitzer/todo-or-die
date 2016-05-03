@@ -1,5 +1,3 @@
 class Goal < ActiveRecord::Base
-  def project_type
-
-  end
+  as_enum :goal_type, [:novel, :coding_project, :blog], map: :string
 end

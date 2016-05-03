@@ -9,6 +9,7 @@ gem 'turbolinks'
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'simple_enum'
 
 group :test do
   gem 'capybara'
