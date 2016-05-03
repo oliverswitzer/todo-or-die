@@ -1,5 +1,3 @@
 class Goal < ActiveRecord::Base
-  def project_type
-
-  end
+  attr_accessor :project_type
 end

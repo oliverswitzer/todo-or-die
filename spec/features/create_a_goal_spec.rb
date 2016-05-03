@@ -8,13 +8,18 @@ describe 'visiting the homepage', type: :feature do
     mock_omniauth_for_facebook
   end
 
-  it 'user can create account with facebook' do
+  it 'user can create a goal' do
     givenIAmOnTheHomepage
     thenISeeAPromptToCreateAGoal
     whenIClickCreateGoalCallToAction
     thenIAmLoggedIn
     thenIAmOnTheGoalCreationPage
     whenIFillOutTheForm
+    thenIAmOnTheChooseAFriendPage
+  end
+
+  def thenIAmOnTheChooseAFriendPage
+    expect(page).to have_content('Choose a Friend')
   end
 
   def whenIFillOutTheForm
@@ -25,8 +30,7 @@ describe 'visiting the homepage', type: :feature do
     select '2016', :from => 'goal_complete_by_1i'
     select 'April', :from => 'goal_complete_by_2i'
     select '17', :from => 'goal_complete_by_3i'
-
-    click_on 'Commit Me'
+    click_on 'Do It'
   end
 
   def thenIAmOnTheGoalCreationPage
