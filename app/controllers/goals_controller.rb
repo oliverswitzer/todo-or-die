@@ -4,10 +4,10 @@ class GoalsController < ApplicationController
   end
 
   def create
-    @goal = Goal.new(sanitized_params[:goal])
+    @goal = Goal.new(sanitized_params)
     @goal.save
 
-    render :new
+    redirect_to friends_path
   end
 
   def sanitized_params
