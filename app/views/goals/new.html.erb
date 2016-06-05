@@ -1,17 +1,36 @@
-<h1><%= t('goals.header') %></h1>
+<h3><%= t('goals.header') %></h3>
 
 <%= form_for @goal do |f| %>
-    <%= f.label :name, 'Name your goal'  %>
-    <%= f.text_field :name %>
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.label :name, 'Name your goal', class: ''  %>
+        <%= f.text_field :name, class: ''%>
+      </div>
+    </div>
 
-    <%= f.label :goal_type, 'What are you working on?' %>
-    <%= f.select :goal_type, enum_option_pairs(Goal, :goal_type), include_blank: true %>
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.select :goal_type, enum_option_pairs(Goal, :goal_type), include_blank: true  %>
+        <%= f.label :goal_type, 'What are you working on?' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <div id="word-count-slider">
+        </div>
+        <input disabled/>
 
-    <%= f.label :word_count, 'How many words do you want to write?' %>
-    <%= f.text_field :word_count %>
+        <!--<%= f.label :word_count, 'How many words do you want to write?' %>-->
+        <!--<%= f.text_field :word_count, class: 'form-control' %>-->
+      </div>
+    </div>
 
-    <%= f.label :complete_by, 'When I want to be done' %>
-    <%= f.date_select :complete_by %>
+    <div class="row">
+      <div class="input-field col s6">
+        <%= date_field :goal, :complete_by, class: 'datepicker' %>
+        <label for="complete_by">When I want to be done</label>
+      </div>
+    </div>
 
-    <%= f.submit(value: 'Do It') %>
+    <%= f.submit value: 'Do It', class: 'btn btn-default' %>
 <% end  %>

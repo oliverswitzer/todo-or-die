@@ -9,13 +9,14 @@
 </head>
 <body>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<p class="notice badge"><%= notice %></p>
+<p class="alert badge"><%= alert %></p>
 
 <%= current_user.try(:name) %>
 
-
-<%= yield %>
+<div class="container">
+  <%= yield %>
+</div>
 
 </body>
 </html>
