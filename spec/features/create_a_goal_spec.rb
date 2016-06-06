@@ -10,7 +10,6 @@ describe 'visiting the homepage', type: :feature do
 
   it 'user can create a goal' do
     givenIAmOnTheHomepage
-    thenISeeAPromptToCreateAGoal
     whenIClickCreateGoalCallToAction
     thenIAmLoggedIn
     thenIAmOnTheGoalCreationPage
@@ -43,10 +42,6 @@ describe 'visiting the homepage', type: :feature do
 
   def whenIClickCreateGoalCallToAction
     click_link_or_button 'Create Your Goal'
-  end
-
-  def thenISeeAPromptToCreateAGoal
-    expect(page).to have_content('Create Your Goal')
   end
 
   def givenIAmOnTheHomepage

@@ -2,35 +2,28 @@
 
 <%= form_for @goal do |f| %>
     <div class="row">
-      <div class="input-field col s12">
-        <%= f.label :name, 'Name your goal', class: ''  %>
+      <div class="input-field col s6">
+        <%= f.label :name, 'Goal name, e.g. "Finishing that damn Novel"', class: ''  %>
         <%= f.text_field :name, class: ''%>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="input-field col s12">
+      <div class="input-field col s4">
         <%= f.select :goal_type, enum_option_pairs(Goal, :goal_type), include_blank: true  %>
-        <%= f.label :goal_type, 'What are you working on?' %>
+        <%= f.label :goal_type, 'What type of project are you working on?' %>
       </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <div id="word-count-slider">
-        </div>
-        <input disabled/>
-
-        <!--<%= f.label :word_count, 'How many words do you want to write?' %>-->
-        <!--<%= f.text_field :word_count, class: 'form-control' %>-->
+      <div class="input-field col s2">
+        <%= number_field :goal, :word_count, placeholder: 'Enter a word count' %>
       </div>
     </div>
 
     <div class="row">
-      <div class="input-field col s6">
+      <div class="input-field col s4 offset-s4 ">
         <%= date_field :goal, :complete_by, class: 'datepicker' %>
         <label for="complete_by">When I want to be done</label>
       </div>
     </div>
 
-    <%= f.submit value: 'Do It', class: 'btn btn-default' %>
+    <div class="center-align">
+      <%= f.submit value: 'Do It', class: 'btn btn-large waves-effect waves-light' %>
+    </div>
 <% end  %>
