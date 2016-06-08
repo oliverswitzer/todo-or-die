@@ -12,14 +12,13 @@
         <%= f.label :goal_type, 'What type of project are you working on?' %>
       </div>
       <div class="input-field col s2">
-        <%= number_field :goal, :word_count, placeholder: 'Enter a word count' %>
+        <%= number_field :goal, :word_count, placeholder: 'How many words do you want to write?' %>
       </div>
     </div>
 
     <div class="row">
       <div class="input-field col s4 offset-s4 ">
-        <%= date_field :goal, :complete_by, class: 'datepicker' %>
-        <label for="complete_by">When I want to be done</label>
+        <%= date_field :goal, :complete_by, placeholder: 'When I want to be done', class: 'datepicker' %>
       </div>
     </div>
 

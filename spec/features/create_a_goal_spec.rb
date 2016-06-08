@@ -22,13 +22,11 @@ describe 'visiting the homepage', type: :feature do
   end
 
   def whenIFillOutTheForm
-    fill_in 'Name your goal', with: 'My Goal'
-    select 'Novel', from: 'What are you working on?'
+    fill_in 'Goal name, e.g. "Finishing that damn Novel', with: 'My Goal'
+    select 'Novel', from: 'What type of project are you working on?'
     fill_in 'How many words do you want to write?', with: '100'
+    fill_in 'When I want to be done', with: '1 June, 2016'
 
-    select '2016', :from => 'goal_complete_by_1i'
-    select 'April', :from => 'goal_complete_by_2i'
-    select '17', :from => 'goal_complete_by_3i'
     click_on 'Do It'
   end
 
