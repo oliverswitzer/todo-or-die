@@ -4,21 +4,21 @@
   <title>TodoOrDie</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag 'facebook_api' %>
+  <!--<%= javascript_include_tag 'facebook_api' %>-->
   <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
 
   <%= csrf_meta_tags %>
 </head>
 <body>
+    <%= javascript_include_tag('facebook_api') %>
+    <p class="notice badge"><%= notice %></p>
+    <p class="alert badge"><%= alert %></p>
 
-<p class="notice badge"><%= notice %></p>
-<p class="alert badge"><%= alert %></p>
+    <i class="perm_identity"></i><%= current_user.try(:name) %>
 
-<i class="perm_identity"></i><%= current_user.try(:name) %>
-
-<div class="container">
-  <%= yield %>
-</div>
+    <div class="container">
+      <%= yield %>
+    </div>
 
 </body>
 </html>
