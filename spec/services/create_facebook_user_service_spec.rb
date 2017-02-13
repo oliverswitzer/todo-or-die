@@ -3,11 +3,11 @@ require_relative '../../app/services/create_facebook_user_service'
 
 
 describe CreateFacebookUserService do
-  describe "perform" do
+  describe 'perform' do
     let(:omniauth_params) {
       {
-          provider: "provider",
-          uid: "uid"
+          provider: 'provider',
+          uid: 'uid'
       }
     }
 
@@ -30,59 +30,59 @@ describe CreateFacebookUserService do
 
     end
 
-    it "queries the User class for provider and uid passed in omniauth params" do
+    it 'queries the User class for provider and uid passed in omniauth params' do
       service.perform
-      expect(user_klass).to have_received(:where).with(provider: "provider", uid: "uid")
+      expect(user_klass).to have_received(:where).with(provider: 'provider', uid: 'uid')
     end
 
-    it "calls find_or_create on the where query" do
+    it 'calls find_or_create on the where query' do
       service.perform
       expect(where_return_object).to have_received(:first_or_create)
     end
 
     let(:user) { spy(Object) }
 
-    it "checks if the user is persisted" do
+    it 'checks if the user is persisted' do
       service.perform
       expect(user).to have_receive(:persisted?)
     end
 
-    context "user is persisted" do
+    context 'user is persisted' do
       before do
         allow(user).to receive(:persisted?) { true }
       end
 
-      it "calls sign_in_and_redirect on the listener with @user" do
+      it 'calls sign_in_and_redirect on the listener with @user' do
         service.perform
         expect(listener).to have_received(:sign_in_and_redirect).with(user)
       end
 
-      it "sets a flash message on the controller" do
+      it 'sets a flash message on the controller' do
         service.perform
         expect(listener).to have_received(:set_flash_message).with(
                                 :notice,
                                 :success,
-                                kind: "Facebook"
+                                kind: 'Facebook'
                             )
       end
     end
 
-    context "user is not persisted" do
+    context 'user is not persisted' do
       before do
         allow(user).to receive(:persisted?) { false }
       end
       
-      it "calls error_creating_facebok_user on listener with error message" do
+      it 'calls error_creating_facebok_user on listener with error message' do
         service.perform
         expect(listener).to have_received(:failure)
       end
 
-      it "sets a flash message on the controller" do
+      it 'sets a flash message on the controller' do
         service.perform
         expect(listener).to have_received(:set_flash_message).with(
                                 :notice,
                                 :failure,
-                                kind: "Facebook"
+                                kind: 'Facebook'
                             )
       end
     end
