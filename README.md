@@ -3,11 +3,18 @@
 
 * Database creation
 
-1. Install postgresql
+- Install postgresql
+- Create user: `todoordie`
+```
+$ psql -d postgres
+postgres=# create role todoordie login createdb;
+postgres-# \q
+```
+
+- Then create the database
 
 ```
 rake db:create
-
 ```
 
 * Database initialization
