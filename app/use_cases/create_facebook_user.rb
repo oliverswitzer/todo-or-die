@@ -1,4 +1,4 @@
-class CreateFacebookUserService
+class CreateFacebookUser
   attr_reader :omniauth_data, :listener
 
   def initialize(omniauth_data, listener)

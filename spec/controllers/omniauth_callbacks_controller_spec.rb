@@ -5,7 +5,7 @@ describe OmniauthCallbacksController, type: :controller do
   include AuthenticationHelper
 
   describe 'POST facebook' do
-    let(:create_facebook_user_servie) { spy(CreateFacebookUserService) }
+    let(:create_facebook_user_servie) { spy(CreateFacebookUser) }
 
     before do
       mock_omniauth_for_facebook
@@ -15,13 +15,13 @@ describe OmniauthCallbacksController, type: :controller do
       @request.env['devise.mapping'] = Devise.mappings[:user]
     end
 
-    it 'instantiates the CreateFacebookUserService' do
-      expect(CreateFacebookUserService).to receive(:new).with(@user_mock_info, subject).and_call_original
+    it 'instantiates the CreateFacebookUser' do
+      expect(CreateFacebookUser).to receive(:new).with(@user_mock_info, subject).and_call_original
       post :facebook
     end
 
-    it 'calls perform on the CreateFacebookUserService instance' do
-      expect_any_instance_of(CreateFacebookUserService).to receive(:perform).and_call_original
+    it 'calls perform on the CreateFacebookUser instance' do
+      expect_any_instance_of(CreateFacebookUser).to receive(:perform).and_call_original
       post :facebook
     end
   end

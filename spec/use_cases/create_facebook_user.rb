@@ -1,8 +1,8 @@
 require 'rails_helper'
-require_relative '../../app/services/create_facebook_user_service'
+require_relative '../../app/use_cases/create_facebook_user_service'
 require_relative '../../app/models/user'
 
-describe CreateFacebookUserService do
+describe CreateFacebookUser do
   describe 'perform' do
     let(:omniauth_params) {
       {
