@@ -1,32 +1,51 @@
 
-* Ruby version: ruby 2.1.5p273
+* Ruby version: ruby 2.3.1p112
 
-* Database creation
+## Database creation
 
-- Install postgresql
-- Create user: `todoordie`
+*For first time setup* 
+```
+$ brew update
+$ brew doctor
+$ brew install postgres
+```
+
+Create user: `todoordie`
+
 ```
 $ psql -d postgres
 postgres=# create role todoordie login createdb;
 postgres-# \q
 ```
 
-- Then create the database
+Then create the database
 
 ```
-rake db:create
+bundle exec rake db:create
 ```
 
-* Database initialization
+#### Running migrations
 
 ```
-rake db:migrate
+bundle exec rake db:migrate
 ```
 
-* How to run the test suite
+#### To start and stop postgres
+
+To start postgres:
+```
+pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
+```
+
+To stop postgres 
+```
+pg_ctl -D /usr/local/var/postgres stop -s -m fast
+```
+
+## How to run the test suite
 
 ```
-rake db:test:prepare
+bundle exec rake db:test:prepare
 ```
 
 For running Jasmine tests, start up the local development server and go to `localhost:3000/specs`
