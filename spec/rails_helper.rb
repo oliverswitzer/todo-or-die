@@ -27,23 +27,15 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.orm = 'active_record'
     DatabaseCleaner.clean_with :truncation
+    DatabaseCleaner.strategy = :transaction
+
     FileUtils.rm(Dir.glob("#{Rails.root}/tmp/capybara/*"))
   end
 
-  config.before(:each) do
-    DatabaseCleaner.strategy = :transaction
-  end
-
-  config.before(:each, :js => true) do
-    DatabaseCleaner.strategy = :truncation
-  end
-
-  config.before(:each, :database) do
-    DatabaseCleaner.start
-  end
-
-  config.after(:each, :database) do
-    DatabaseCleaner.clean
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
   end
 
   config.include FactoryGirl::Syntax::Methods

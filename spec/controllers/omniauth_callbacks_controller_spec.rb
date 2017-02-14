@@ -16,7 +16,7 @@ describe OmniauthCallbacksController, type: :controller do
     end
 
     it "instantiates the CreateFacebookUserService" do
-      expect(CreateFacebookUserService).to receive(:new).with(@user_mock_info, subject, User).and_call_original
+      expect(CreateFacebookUserService).to receive(:new).with(@user_mock_info, subject).and_call_original
       post :facebook
     end
 
