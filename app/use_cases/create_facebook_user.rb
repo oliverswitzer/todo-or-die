@@ -1,4 +1,4 @@
-class CreateFacebookUserService
+class CreateFacebookUser
   attr_reader :omniauth_data, :listener
 
   def initialize(omniauth_data, listener)
@@ -10,12 +10,20 @@ class CreateFacebookUserService
     user = CreateUserFromOAuthService.perform(omniauth_data)
 
     if user.persisted?
-      listener.sign_in_and_redirect user
-      listener.send(:set_flash_message, :notice, :success, kind: 'Facebook')
+      log_in(user)
     else
-      listener.send(:set_flash_message, :notice, :failure, kind: 'Facebook')
-      listener.failure
+      notify_of_failure
     end
   end
 
+  private
+    def notify_of_failure
+      listener.send(:set_flash_message, :notice, :failure, kind: 'Facebook')
+      listener.failure
+    end
+
+    def log_in(user)
+      listener.sign_in_and_redirect user
+      listener.send(:set_flash_message, :notice, :success, kind: 'Facebook')
+    end
 end

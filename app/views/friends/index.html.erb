@@ -1,1 +1,9 @@
 <h1><%= t('friends.header') %></h1>
+
+<ul>
+  <% @friends.each do |friend| %>
+    <li>
+      <%= friend.name %>
+    </li>
+  <% end %>
+</ul>
