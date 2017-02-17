@@ -15,6 +15,15 @@ describe 'visiting the homepage', type: :feature do
     thenIAmOnTheGoalCreationPage
     whenIFillOutTheForm
     thenIAmOnTheChooseAFriendPage
+    thenISeeMyFriends
+  end
+
+  private
+
+  def thenISeeMyFriends
+    expect(page).to have_content('Bob Dole')
+    expect(page).to have_content('Louis Ck')
+    expect(page).to have_content('Stephen Colbert')
   end
 
   def thenIAmOnTheChooseAFriendPage
