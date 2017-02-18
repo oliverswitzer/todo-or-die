@@ -1,5 +1,6 @@
 class FriendsController < ApplicationController
   def index
-    @friends = current_user.friends
+    @friends = []
+    # TODO: Implement fetch with Koala
   end
 end

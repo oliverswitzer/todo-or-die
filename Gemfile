@@ -14,6 +14,8 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'simple_enum'
 
+gem 'koala'
+
 group :test do
   gem 'capybara'
   gem 'poltergeist'

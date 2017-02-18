@@ -84,6 +84,10 @@ GEM
     hashie (3.5.5)
     i18n (0.8.1)
     jwt (1.5.6)
+    koala (2.3.0)
+      addressable
+      faraday
+      multi_json
     launchy (2.4.3)
       addressable (~> 2.3)
     loofah (2.0.3)
@@ -227,6 +231,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   factory_girl
+  koala
   materialize-sass
   omniauth-facebook
   pg
