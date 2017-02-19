@@ -6,8 +6,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         provider: omniauth_data[:provider],
         uid: omniauth_data[:uid],
         random_token: Devise.friendly_token[0, 20],
-        email: omniauth_data[:info][:email],
-        name: omniauth_data[:info][:name]
+        email: omniauth_data[:info].try(:[], :email).maybe,
+        name: omniauth_data[:info].try(:[], :name).maybe
     )
 
     @service = CreateFacebookUser.new(use_case_request, self)

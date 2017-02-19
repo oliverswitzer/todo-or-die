@@ -8,8 +8,15 @@ describe CreateFacebookUser do
     let(:listener_spy) { spy(ListenerSpy) }
 
     let(:create_user_request) {
-      CreateFacebookUserRequest.new(provider: 'some provider')
+      CreateFacebookUserRequest.new(
+          provider: 'some provider'.maybe,
+          email: 'email'.maybe,
+          name: 'name'.maybe,
+          uid: 'uid'.maybe,
+          random_token: 'some random token'.maybe
+      )
     }
+
     let(:subject) { CreateFacebookUser.new(create_user_request, listener_spy) }
 
     context 'user is persisted' do
