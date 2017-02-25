@@ -8,7 +8,7 @@ require 'rspec/rails'
 require 'rspec/mocks'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
-require 'devise'
+require 'devise/controllers/helpers'
 require 'capybara-screenshot/rspec'
 
 ActiveRecord::Migration.check_pending!
@@ -22,7 +22,7 @@ Capybara::Screenshot.append_timestamp = false
 
 RSpec.configure do |config|
   config.include RSpec::Mocks
-  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Capybara::DSL
   config.infer_spec_type_from_file_location!
 

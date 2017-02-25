@@ -26,19 +26,19 @@ describe GoalsController, type: :controller do
     end
 
     it 'creates a new goal with paramters' do
-      post :create, goal: goal_params
+      post :create, params: { goal: goal_params }
 
       expect(assigns(:goal)).to have_attributes(name: 'test goal', word_count: 0)
     end
 
     it 'sets user of goal to the current user' do
-      post :create, goal: goal_params
+      post :create, params: { goal: goal_params }
 
       expect(assigns(:goal)).to have_attributes(user_id: 123)
     end
 
     it 'returns http success' do
-      post :create, goal: goal_params
+      post :create, params: { goal: goal_params }
       expect(response).to redirect_to(friends_path)
     end
   end
