@@ -28,11 +28,10 @@ class Some
   end
 end
 
+class UnwrappedNil < StandardError; end
 class None
-  class Unwrapped < StandardError; end
-
   def get
-    raise Unwrapped
+    raise UnwrappedNil
   end
 
   def present?
