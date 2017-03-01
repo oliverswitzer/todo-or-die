@@ -9,7 +9,7 @@
 
       <div class="input-field col s4">
         <%= f.select :goal_type, enum_option_pairs(Goal, :goal_type), include_blank: true  %>
-        <%= f.label :goal_type, 'What type of project are you working on?' %>
+        <%= f.label :goal_type, 'What type of project are you working on?', class: 'font-large' %>
       </div>
       <div class="input-field col s2">
         <%= number_field :goal, :word_count, placeholder: 'How many words do you want to write?' %>

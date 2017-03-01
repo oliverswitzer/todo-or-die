@@ -1,9 +1,18 @@
 <h1><%= t('friends.header') %></h1>
 
 <ul>
-  <% @friends.each do |friend| %>
-    <li>
-      <%= friend.name %>
-    </li>
-  <% end %>
+    <% @friends.each_slice(4) do |friend_group| %>
+      <div class="row">
+        <% friend_group.each do |friend| %>
+              <div class="col s3">
+                <div class="friend">
+                  <div>
+                    <img class="circle" src=<%= friend.image_url.get %>>
+                    <div><%= friend.name %></div>
+                  </div>
+                </div>
+              </div>
+        <% end %>
+      </div>
+    <% end %>
 </ul>
