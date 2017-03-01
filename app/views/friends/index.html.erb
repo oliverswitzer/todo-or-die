@@ -5,12 +5,15 @@
       <div class="row">
         <% friend_group.each do |friend| %>
               <div class="col s3">
-                <div class="friend">
-                  <div>
-                    <img class="circle" src=<%= friend.image_url.get %>>
-                    <div><%= friend.name %></div>
+
+                <%= link_to goal_countdown_path(1) do %>
+                  <div class="friend">
+                    <div>
+                      <img class="circle" src=<%= friend.image_url.get %>>
+                      <div><%= friend.name %></div>
+                    </div>
                   </div>
-                </div>
+                <% end %>
               </div>
         <% end %>
       </div>

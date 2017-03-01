@@ -12,9 +12,19 @@ describe 'visiting the homepage', type: :feature do
     whenIFillOutTheForm
     thenIAmOnTheChooseAFriendPage
     thenISeeMyFriends
+    whenIClickOnOneOfMyFriends
+    thenISeeACountdownToMyGoalCompletion
   end
 
   private
+
+  def thenISeeACountdownToMyGoalCompletion
+    expect(page).to have_content('Complete your goal before the timer below runs out!')
+  end
+
+  def whenIClickOnOneOfMyFriends
+    click_on 'Oliver Switzer'
+  end
 
   def whenIAuthorizeWithFacebook
     fill_in(id: 'email', with: ENV['TEST_USER_EMAIL'])

@@ -12,6 +12,10 @@ class GoalsController < ApplicationController
     redirect_to friends_path
   end
 
+  def countdown
+
+  end
+
   def sanitized_params
     params.require(:goal).permit(:name, :word_count, :complete_by, :goal_type)
   end
