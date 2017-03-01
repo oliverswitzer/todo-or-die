@@ -2,6 +2,9 @@
 require 'factory_girl'
 require 'database_cleaner'
 require 'rspec/mocks'
+
+class ListenerSpy; end
+
 RSpec.configure do |config|
   config.include RSpec::Mocks
 

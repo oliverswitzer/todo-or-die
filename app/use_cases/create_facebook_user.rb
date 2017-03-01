@@ -1,29 +1,24 @@
 class CreateFacebookUser
-  attr_reader :omniauth_data, :listener
+  attr_reader :create_user_request, :listener
 
-  def initialize(omniauth_data, listener)
-    @omniauth_data = omniauth_data
+  def initialize(create_user_request, listener)
+    @create_user_request = create_user_request
     @listener = listener
   end
 
   def perform
-    user = CreateUserFromOAuthService.perform(omniauth_data)
+    user_entity = UserEntity.new(
+        password: create_user_request.random_token,
+        email: create_user_request.email.get,
+        name: create_user_request.name.get,
+        provider: create_user_request.provider,
+        uid: create_user_request.uid
+    )
 
-    if user.persisted?
-      log_in(user)
+    if UserRepository.find_or_create(user_entity: user_entity)
+      listener.handle_success(user_entity)
     else
-      notify_of_failure
+      listener.handle_failure
     end
   end
-
-  private
-    def notify_of_failure
-      listener.send(:set_flash_message, :notice, :failure, kind: 'Facebook')
-      listener.failure
-    end
-
-    def log_in(user)
-      listener.sign_in_and_redirect user
-      listener.send(:set_flash_message, :notice, :success, kind: 'Facebook')
-    end
 end

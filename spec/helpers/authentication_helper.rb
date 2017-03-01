@@ -1,8 +1,4 @@
 module AuthenticationHelper
-  def givenIAmLoggedIn
-
-  end
-
   def mock_omniauth_for_facebook
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[:facebook] = {

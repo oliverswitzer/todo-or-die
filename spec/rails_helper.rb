@@ -13,12 +13,14 @@ require 'capybara-screenshot/rspec'
 
 ActiveRecord::Migration.check_pending!
 
-Capybara.javascript_driver = :poltergeist
+Capybara.default_driver = :poltergeist
 
 Capybara::Screenshot.register_filename_prefix_formatter(:rspec) do |example|
   "screenshot_#{example.description.gsub(' ', '-').gsub(/^.*\/spec\//,'')}"
 end
 Capybara::Screenshot.append_timestamp = false
+Capybara.server_port = 3001
+Capybara.app_host = 'http://localhost:3001'
 
 RSpec.configure do |config|
   config.include RSpec::Mocks
@@ -29,7 +31,7 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.orm = 'active_record'
     DatabaseCleaner.clean_with :truncation
-    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.strategy = :truncation
 
     FileUtils.rm(Dir.glob("#{Rails.root}/tmp/capybara/*"))
   end
