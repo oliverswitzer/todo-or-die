@@ -18,13 +18,15 @@ gem 'simple_enum'
 gem 'koala'
 
 group :test do
-  gem 'capybara'
   gem 'poltergeist'
   gem 'factory_girl'
+  gem 'rspec-collection_matchers'
   gem 'rspec-rails'
   gem 'database_cleaner'
   gem 'rails-controller-testing'
-  gem 'capybara-screenshot', :group => :test
+  gem 'capybara'
+  gem 'capybara-screenshot'
+  gem 'selenium-webdriver'
 end
 
 group :test, :development do
