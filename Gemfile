@@ -5,6 +5,7 @@ gem 'pg'
 
 gem 'sass'
 gem 'sass-rails', '~> 5.0'
+gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'materialize-sass'
 
